@@ -39,9 +39,13 @@ public class Config implements CommandLineRunner {
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
 
         Post post1 = new Post(null, sdf.parse("21/02/1999"), "Goodbye", "Cruel World", new AuthorDTO(maria) );
+        Post post2 = new Post(null, sdf.parse("21/02/1998"), "Goodbye", "Cruel World", new AuthorDTO(maria) );
 
+        postRepository.saveAll(Arrays.asList(post1, post2));
 
-        postRepository.saveAll(Arrays.asList(post1));
+        maria.getPosts().addAll(Arrays.asList(post1, post2));
+
+        userRepository.save(maria);
 
     }
 }
