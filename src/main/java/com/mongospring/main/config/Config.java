@@ -2,6 +2,7 @@ package com.mongospring.main.config;
 
 import com.mongospring.main.domain.Post;
 import com.mongospring.main.domain.User;
+import com.mongospring.main.dto.AuthorDTO;
 import com.mongospring.main.repositories.PostRepository;
 import com.mongospring.main.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,11 @@ public class Config implements CommandLineRunner {
         User alex = new User(null, "Alex Green", "alex@gmail.com");
         User bob = new User(null, "Bob Grey", "bob@gmail.com");
 
-        Post post1 = new Post(null, sdf.parse("21/02/1999"), "Goodbye", "Cruel World", maria);
-
         userRepository.saveAll(Arrays.asList(maria, alex, bob));
+
+        Post post1 = new Post(null, sdf.parse("21/02/1999"), "Goodbye", "Cruel World", new AuthorDTO(maria) );
+
+
         postRepository.saveAll(Arrays.asList(post1));
 
     }
